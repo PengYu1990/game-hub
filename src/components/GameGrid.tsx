@@ -14,24 +14,23 @@ const GameGrid = ({ gameQuery }: Props) => {
 
   const skelentons = [1, 2, 3, 4, 5, 6, 7, 8];
 
+  if (error) return <Text>{error}</Text>;
+
   return (
-    <>
-      {error && <Text>{error}</Text>}
-      <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={6}>
-        {isLoading &&
-          skelentons.map((skelenton) => (
-            <GameCardContainer key={skelenton}>
-              <GameCardSkelenton />
-            </GameCardContainer>
-          ))}
-        {data &&
-          data.map((game) => (
-            <GameCardContainer key={game.id}>
-              <GameCard game={game}></GameCard>
-            </GameCardContainer>
-          ))}
-      </SimpleGrid>
-    </>
+    <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={6}>
+      {isLoading &&
+        skelentons.map((skelenton) => (
+          <GameCardContainer key={skelenton}>
+            <GameCardSkelenton />
+          </GameCardContainer>
+        ))}
+      {data &&
+        data.map((game) => (
+          <GameCardContainer key={game.id}>
+            <GameCard game={game}></GameCard>
+          </GameCardContainer>
+        ))}
+    </SimpleGrid>
   );
 };
 
